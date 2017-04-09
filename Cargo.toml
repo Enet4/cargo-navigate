@@ -22,7 +22,7 @@ name = "cargo-home"
 path = "src/home.rs"
 
 [badges]
-travis-ci = { repository = "https://github.com/Enet4/cargo-navigate.git" }
+travis-ci = { repository = "Enet4/cargo-navigate" }
 
 [dependencies]
 clap = "^2.19.2"
