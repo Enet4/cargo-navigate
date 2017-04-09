@@ -7,7 +7,6 @@
 //!        unused_qualifications)]
 
 extern crate clap;
-extern crate cargo;
 extern crate hyper;
 extern crate hyper_native_tls;
 extern crate open;
@@ -17,20 +16,23 @@ extern crate serde_json;
 mod urls;
 
 use std::io::{stderr, Write};
-use clap::{App, Arg, ArgMatches};
+use clap::{App, AppSettings, Arg, ArgMatches, SubCommand};
 use urls::{UrlType, Result, get_url_of, get_url_of_this};
 
 fn main() {
     let args = App::new("cargo home")
         .about("Navigate to a crate's homepage")
         .bin_name("cargo")
-        .arg(Arg::with_name("crate")
-            .required(false)
-            .help("The crate to navigate to (or the crate in the current working directory if \
-                   unspecified)"))
+        .subcommand(SubCommand::with_name("home")
+            .about("Navigate to a crate's homepage")
+            .arg(Arg::with_name("crate")
+                .required(false)
+                .help("The crate to navigate to (or the crate in the current working directory if \
+                    unspecified)")))
+            .settings(&[AppSettings::SubcommandRequired])
         .get_matches();
 
-    run(&args)
+    run(args.subcommand_matches("home").unwrap())
         .err()
         .map(|e| {
             write!(stderr(), "{}\n", e.to_string()).unwrap();

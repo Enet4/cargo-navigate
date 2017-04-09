@@ -24,7 +24,6 @@ path = "src/home.rs"
 travis-ci = { repository = "https://github.com/Enet4/cargo-navigate.git" }
 
 [dependencies]
-cargo = "^0.17.0"
 clap = "^2.19.2"
 hyper = "^0.10.7"
 hyper-native-tls = "^0.2.2"

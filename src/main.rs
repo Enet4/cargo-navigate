@@ -7,7 +7,6 @@
 //!        unused_qualifications)]
 
 extern crate clap;
-extern crate cargo;
 extern crate hyper;
 extern crate hyper_native_tls;
 extern crate open;
@@ -19,28 +18,29 @@ mod urls;
 use urls::{Result, UrlType, get_url_of, get_url_of_this};
 
 use std::io::{stderr, Write};
-use cargo::Config;
-use clap::{App, Arg, ArgMatches};
+use clap::{App, AppSettings, Arg, ArgMatches, SubCommand};
 
 fn main() {
     let args = App::new("cargo navigate")
         .about("Navigate to a crate's informative link: homepage, crates.io, repository or documentation")
         .bin_name("cargo")
-        .arg(Arg::with_name("where")
-            .required(true)
-            .possible_values(&["repo", "home", "docs", "crates", "crate", "crates.io", "crates-io",
-                "repository", "homepage", "documentation", "cratesio", "crates-io"])
-            .hide_possible_values(true)
-            .default_value("repo")
-            .help("Where to navigate (\"repo\", \"docs\", \"crates\", \"home\")"))
-        .arg(Arg::with_name("crate")
-            .required(false)
-            .help("The crate to navigate to (or the crate in the current working directory if \
-                   unspecified)"))
+        .subcommand(SubCommand::with_name("navigate")
+            .about("Navigate to a crate's informative link: homepage, crates.io, repository or documentation")
+            .arg(Arg::with_name("where")
+                .required(true)
+                .possible_values(&["repo", "home", "docs", "crates", "crate", "crates.io", "crates-io",
+                    "repository", "homepage", "documentation", "cratesio", "crates-io"])
+                .hide_possible_values(true)
+                .default_value("repo")
+                .help("Where to navigate (\"repo\", \"docs\", \"crates\", \"home\")"))
+            .arg(Arg::with_name("crate")
+                .required(false)
+                .help("The crate to navigate to (or the crate in the current working directory if \
+                    unspecified)")))
+            .settings(&[AppSettings::SubcommandRequired])
         .get_matches();
 
-    let config = Config::default().expect("Unable to get config");
-    run(&config, &args)
+    run(args.subcommand_matches("navigate").unwrap())
         .err()
         .map(|e| {
                  write!(stderr(), "{}\n", e.to_string()).unwrap();
@@ -48,7 +48,7 @@ fn main() {
              });
 }
 
-fn run(_: &Config, args: &ArgMatches) -> Result<()> {
+fn run(args: &ArgMatches) -> Result<()> {
     let t = UrlType::from_command(args.value_of("where").unwrap()).unwrap();
 
     let url = match args.value_of("crate") {
