@@ -11,7 +11,7 @@ The main tool allows you to navigate to:
 - **repo**: the crate's repository;
 - **docs**: the crate's documentation;
 - **home**: the crate's homepage;
-- **crates**: the crate's page on <crates.io>.
+- **crates**: the crate's page on [crates.io](https://crates.io).
 
 ## Installing
 
