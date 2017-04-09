@@ -6,7 +6,7 @@ keywords = ["cargo", "navigate", "browser", "repository", "homepage"]
 name = "cargo-navigate"
 documentation = "https://docs.rs/cargo-navigate"
 repository = "https://github.com/Enet4/cargo-navigate"
-version = "0.1.0"
+version = "0.1.1"
 license = "Apache-2.0/MIT"
 
 [[bin]]
