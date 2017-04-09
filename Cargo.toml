@@ -1,6 +1,6 @@
 [package]
 authors = ["Eduardo Pinho <enet4mikeenet@gmail.com>"]
-categories = ["cargo"]
+categories = ["development-tools::cargo-plugins"]
 description = "Navigate to a crate's informative site (homepage, repository, documentation or crates.io)."
 keywords = ["cargo", "navigate", "browser", "repository", "homepage"]
 name = "cargo-navigate"
