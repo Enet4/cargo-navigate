@@ -1,0 +1,31 @@
+[package]
+authors = ["Eduardo Pinho <enet4mikeenet@gmail.com>"]
+categories = ["cargo"]
+description = "Navigate to a crate's informative site (homepage, repository, documentation or crates.io)."
+keywords = ["cargo", "navigate", "repo", "home", "docs"]
+name = "cargo-navigate"
+documentation = "https://docs.rs/cargo-navigate"
+repository = "https://github.com/Enet4/cargo-navigate.git"
+version = "0.1.0"
+
+[[bin]]
+name = "cargo-navigate"
+path = "src/main.rs"
+
+[[bin]]
+name = "cargo-repo"
+path = "src/repo.rs"
+
+[[bin]]
+name = "cargo-home"
+path = "src/home.rs"
+
+[dependencies]
+cargo = "^0.17.0"
+clap = "^2.19.2"
+hyper = "^0.10.7"
+hyper-native-tls = "^0.2.2"
+open = "^1.1.1"
+serde = "^0.9.3"
+serde_json = "^0.9"
+toml = "^0.3.2"
