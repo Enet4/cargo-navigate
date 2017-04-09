@@ -1,5 +1,7 @@
 # `cargo navigate`
 
+[![Crates.io](https://img.shields.io/crates/v/cargo-navigate.svg)](https://crates.io/crates/cargo-navigate) [![Build Status](https://travis-ci.org/Enet4/cargo-navigate.svg?branch=master)](https://travis-ci.org/Enet4/cargo-navigate)
+
 This is the repository for the tools `cargo-navigate`, `cargo-repo` and `cargo-home`,
 which will open your default Internet browser on a crate's URL.
 
