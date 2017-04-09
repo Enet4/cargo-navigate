@@ -2,11 +2,12 @@
 authors = ["Eduardo Pinho <enet4mikeenet@gmail.com>"]
 categories = ["cargo"]
 description = "Navigate to a crate's informative site (homepage, repository, documentation or crates.io)."
-keywords = ["cargo", "navigate", "repo", "home", "docs"]
+keywords = ["cargo", "navigate", "browser", "url", "repository", "repo", "npm repo", "homepage", "docs"]
 name = "cargo-navigate"
 documentation = "https://docs.rs/cargo-navigate"
-repository = "https://github.com/Enet4/cargo-navigate.git"
+repository = "https://github.com/Enet4/cargo-navigate"
 version = "0.1.0"
+license = "Apache-2.0/MIT"
 
 [[bin]]
 name = "cargo-navigate"
