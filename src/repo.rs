@@ -7,11 +7,10 @@
 //!        unused_qualifications)]
 
 extern crate clap;
-extern crate hyper;
-extern crate hyper_native_tls;
 extern crate open;
-extern crate toml;
+extern crate reqwest;
 extern crate serde_json;
+extern crate toml;
 
 mod urls;
 

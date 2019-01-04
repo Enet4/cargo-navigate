@@ -5,10 +5,6 @@ use std::fmt;
 use std::fs::File;
 use std::io::Read;
 use std::path::PathBuf;
-use hyper::client::Client;
-use hyper::net::HttpsConnector;
-use hyper_native_tls::NativeTlsClient;
-use serde_json::from_reader;
 use serde_json::Value as JsonValue;
 use toml::Value as TomlValue;
 
@@ -133,13 +129,9 @@ pub fn get_url_of<S: AsRef<str>>(name: S, t: UrlType) -> Result<OsString> {
     if t == UrlType::Crates {
         Ok(OsString::from(format!("https://crates.io/crates/{}", name.as_ref())))
     } else {
-        let ssl = NativeTlsClient::new().unwrap();
-        let connector = HttpsConnector::new(ssl);
-        let client = Client::with_connector(connector);
         let endpoint = format!("https://crates.io/api/v1/crates/{}", name.as_ref());
-        let resp = client.get(endpoint.as_str()).send()?;
-        let json = from_reader(resp)?;
 
+        let json = reqwest::get(&*endpoint.as_str())?.json()?;
         get_url_from_json(&json, t)
     }
 }

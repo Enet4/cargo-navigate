@@ -7,15 +7,14 @@
 //!        unused_qualifications)]
 
 extern crate clap;
-extern crate hyper;
-extern crate hyper_native_tls;
 extern crate open;
-extern crate toml;
+extern crate reqwest;
 extern crate serde_json;
+extern crate toml;
 
 #[macro_use]
 mod urls;
-use urls::{Result, UrlType, get_url_of, get_url_of_this};
+use crate::urls::{Result, UrlType, get_url_of, get_url_of_this};
 
 use std::io::{stderr, Write};
 use clap::{App, AppSettings, Arg, ArgMatches, SubCommand};
